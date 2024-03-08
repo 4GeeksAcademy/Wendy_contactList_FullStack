@@ -9,25 +9,25 @@ import { AppContext } from "../layout";
 export const Home = () => {
 	const context = useContext(AppContext);
 	
-	// useEffect(() => {
-    //     fetch('https://playground.4geeks.com/apis/fake/todos/user/wendy')
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw Error(response.statusText);
-    //             }
-    //             // Read the response as JSON
-    //             return response.json();
-    //         })
-    //         .then(responseAsJson => {
-    //             // Do stuff with the JSONified response
-    //             console.log(responseAsJson);
-    //            context.setListC(responseAsJson);
-    //         })
-    //         .catch(error => {
-    //             console.log('Looks like there was a problem: \n', error);
-    //         });
+	useEffect(() => {
+        fetch('https://playground.4geeks.com/apis/fake/contact/agenda/Wendy')
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                // Read the response as JSON
+                return response.json();
+            })
+            .then(responseAsJson => {
+                // Do stuff with the JSONified response
+                console.log(responseAsJson);
+               context.setListC(responseAsJson);
+            })
+            .catch(error => {
+                console.log('Looks like there was a problem: \n', error);
+            });
 
-    // }, [context.listC]);
+    }, [context.listC]);
 
 
 

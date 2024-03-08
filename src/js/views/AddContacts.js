@@ -48,19 +48,19 @@ function saveContact(){
 	setTempP('');
 	setTempN('');
 
-	// fetch('', {
-	// 	method: 'PUT', // or 'POST'
-	// 	body: JSON.stringify(newArray), // data can be a 'string' or an {object} which comes from somewhere further above in our application
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	}
-	// })
-	// 	.then(res => {
-	// 		if (!res.ok) throw Error(res.statusText);
-	// 		return res.json();
-	// 	})
-	// 	.then(response => console.log('Success:', response))
-	// 	.catch(error => console.error(error));
+	fetch('https://playground.4geeks.com/apis/fake/contact/agenda/Wendy', {
+		method: 'PUT', // or 'POST'
+		body: JSON.stringify(newArray), // data can be a 'string' or an {object} which comes from somewhere further above in our application
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(res => {
+			if (!res.ok) throw Error(res.statusText);
+			return res.json();
+		})
+		.then(response => console.log('Success:', response))
+		.catch(error => console.error(error));
 
 
 }
