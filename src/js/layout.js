@@ -10,6 +10,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { AddContact } from "./views/AddContacts";
+import { EditContact } from "./views/EditContact";
 
 
 
@@ -20,41 +21,26 @@ const Layout = () => {
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 	
-	const [newContact, setNewContact] = useState({
-		name:'',
-		phone:'',
-        address:'',
-		email: ''
-	});
-	const [listC, setListC] = useState([{
-		name:'John Mayer', 
-		phone:'(786) 298-1467',
-		 address:'29 N someStreet st',
-		email:'sample@gmail.com'
-	
-	},
-	{
-		name:'Taylor Cheif', 
-		phone:'(786) 298-4673',
-		 address:'28 S someAve ave',
-		email:'sample@yahoo.com'
-	
-	},
-	{
-		name:'Keanu Reeves', 
-		phone:'(754) 356-5827',
-		 address:'1100  Miramr Blvd',
-		email:'sample@hotmail.com'
-	
-	}
+	const [listC, setListC] = useState([]);
+	const [tempN, setTempN] = useState('');
+	const [tempP, setTempP] = useState('');
+	const [tempA, setTempA] = useState('');
+	const [tempE, setTempE] = useState('');
 
-]);
 
 	return (
 		<div>
 			<AppContext.Provider value={{
 				listC,
 				setListC,
+				tempA,
+				setTempA,
+				tempE,
+				setTempE,
+				tempN,
+				setTempN,
+				tempP,
+				setTempP
 				
 			}} >
 
@@ -64,6 +50,7 @@ const Layout = () => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/demo" element={<Demo />} />
+						<Route path="/editcontact" element={<EditContact />} />
 						<Route path="/AddContacts" element={<AddContact />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

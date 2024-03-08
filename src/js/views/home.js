@@ -20,14 +20,14 @@ export const Home = () => {
             })
             .then(responseAsJson => {
                 // Do stuff with the JSONified response
-                console.log(responseAsJson);
+                console.log('this is a test', responseAsJson);
                context.setListC(responseAsJson);
             })
             .catch(error => {
                 console.log('Looks like there was a problem: \n', error);
             });
 
-    }, [context.listC]);
+    }, []);
 
 
 
@@ -35,8 +35,9 @@ export const Home = () => {
 	return (
 	
 	<div className="text-center mt-5">
-	{context.listC.map((element) =>
-				<ContactCard contact={element}/>
+
+	{context.listC.map((element,index) =>
+				<ContactCard ind={index} contact={element}/>
 			)}
 		
 	</div>

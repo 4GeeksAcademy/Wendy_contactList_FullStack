@@ -15,9 +15,22 @@ export const ContactCard = props => {
 	});
 
 
+
 	function deleteContact(pos){
-		let newArray= context.listC.filter((element,index)=> element.phone!=pos);
+		let newArray= context.listC.filter((element)=> element.id!=pos);
 		context.setListC(newArray);	
+
+		fetch('https://playground.4geeks.com/apis/fake/contact/'+pos, {
+			method: 'DELETE', // or 'POST'
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText);
+				return res.json();
+			})
+			.then(response => console.log('Success:', response))
+			.catch(error => console.error(error));
+	
+
 	}
 
 
@@ -30,11 +43,13 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn" >
+						 <Link to={`/editcontact`} state={props.contact} >
+						<button className="btn">
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
+						</Link> 
 						{/* <button className="btn" onClick={() => props.onDelete()}> */}
-						<button className="btn" onClick={() => deleteContact(props.contact.phone)}>
+						<button className="btn" onClick={() => deleteContact(props.contact.id)}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
