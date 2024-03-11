@@ -11,6 +11,15 @@ export const EditContact = props => {
 	const location =useLocation();
 const data = location.state;
    
+useEffect(() => {
+	context.setTempA(data.address);
+	context.setTempN(data.full_name);
+	context.setTempP(data.phone);
+	context.setTempE(data.email);
+
+}, []);
+
+
 
 
 	function temp_name2(val){
