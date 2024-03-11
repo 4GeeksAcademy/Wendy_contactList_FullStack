@@ -5,11 +5,6 @@ import { AppContext } from "../layout";
 
 
 
-
-
-
-
-
 export const Modal = props => {
 	
 	const context = useContext(AppContext);

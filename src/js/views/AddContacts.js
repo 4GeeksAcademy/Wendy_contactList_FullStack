@@ -31,6 +31,12 @@ export const AddContact = () => {
 
 
 function saveContact(){
+if(context.tempA.length>10 && context.tempN.length>5 && context.tempE.length>10 && context.tempA.length>1 && context.tempP.length==10)
+
+{
+
+
+
 	let testObj= {
 		full_name: context.tempN , 
 		email: context.tempE,
@@ -47,7 +53,8 @@ function saveContact(){
 	context.setTempE('');
 	context.setTempP('');
 	context.setTempN('');
-console.log(newArray);
+
+
 	fetch('https://playground.4geeks.com/apis/fake/contact/', {
 		method: 'POST', // or 'POST'
 		body: JSON.stringify(testObj),
@@ -61,7 +68,11 @@ console.log(newArray);
 		})
 		.then(response => console.log('Success:', response))
 		.catch(error => console.error(error));
+	}
 
+	else{
+		alert('SOmething is missing');
+	}
 
 }
 
