@@ -1,6 +1,8 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { Modal } from "../component/Modal";
+
 // import { ContactCard } from "../component/ContactCards";
 
 import { useState, useEffect, useContext } from "react";
@@ -9,7 +11,15 @@ import { Link, useParams, withRouter } from "react-router-dom";
 
 
 export const Home = () => {
+	const [state, setState] = useState({
+		showModal: false, 
+        id:0
+	});
+
 	const context = useContext(AppContext);
+    const [open, setOpen] = React.useState(false);
+ 
+ 
 	
 	useEffect(() => {
         fetch('https://playground.4geeks.com/apis/fake/contact/agenda/Wendy')
@@ -33,22 +43,6 @@ export const Home = () => {
 
 
 
-	function deleteContact(pos){
-		let newArray= context.listC.filter((element)=> element.id!=pos);
-		context.setListC(newArray);	
-
-		fetch('https://playground.4geeks.com/apis/fake/contact/'+pos, {
-			method: 'DELETE', // or 'POST'
-		})
-			.then(res => {
-				if (!res.ok) throw Error(res.statusText);
-				return res.json();
-			})
-			.then(response => console.log('Success:', response))
-			.catch(error => console.error(error));
-	
-
-	}
 
 
 
@@ -73,10 +67,12 @@ export const Home = () => {
                         <i className="fas fa-pencil-alt mr-3" />
                     </button>
                     </Link> 
-                    {/* <button className="btn" onClick={() => props.onDelete()}> */}
-                    <button className="btn" onClick={() => deleteContact(contact.id)}>
-                        <i className="fas fa-trash-alt" />
-                    </button>
+                     <button className="btn" onClick={() => setState({ showModal: true, contactA:contact })}> 
+                     <i className="fas fa-trash-alt" />
+                   </button> 
+
+                
+
                 </div>
                 <label className="name lead">{contact.full_name}</label>
                 <br />
@@ -105,6 +101,7 @@ export const Home = () => {
 
             </ul>
 		
+            <Modal show={state.showModal} contactM={state.contactA} onClose={() => setState({ showModal: false })} />   
 	</div>
 	)
 	};

@@ -100,6 +100,7 @@ let contact_id= data.id;
 						<label>Address</label>
 						<input type="text" className="form-control" placeholder="Enter address"  value={context.tempA} onChange={(e) => temp_address2(e)} />
 					</div>
+					
 					<button type="button" className="btn btn-primary form-control"  onClick={() => updateContact()}>
 						Save Changes
 					</button>
