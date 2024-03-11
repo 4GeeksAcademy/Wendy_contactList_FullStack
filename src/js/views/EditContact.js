@@ -8,8 +8,8 @@ import { AppContext } from "../layout";
 export const EditContact = props => {
 
 	const context = useContext(AppContext);
-    const data = location.state;
-
+	const[editId, setEditID]= useState();
+   
 
 
 	function temp_name2(val){
@@ -31,38 +31,41 @@ export const EditContact = props => {
 
 
 
-function updateContact(){
+  function updateContact(){
 	let testObj= {
 		full_name: context.tempN , 
 		email: context.tempE,
 		agenda_slug: "Wendy",
 		address: context.tempA,
 		phone: context.tempP	
-
 	}
 	
-	let newArray= [...context.listC];
+	let newArray= [... context.listC];
 	newArray.push(testObj);
 	context.setListC(newArray);
 	context.setTempA('');
 	context.setTempE('');
 	context.setTempP('');
 	context.setTempN('');
-context.setListC(newArray);
+ context.setListC(newArray);
 
-	fetch('https://playground.4geeks.com/apis/fake/contact/'+data.id, {
-		method: 'PUT',
-		body: JSON.stringify(testObj), // data can be a 'string' or an {object} which comes from somewhere further above in our application
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	})
-		.then(res => {
-			if (!res.ok) throw Error(res.statusText);
-			return res.json();
-		})
-		.then(response => console.log('Success:', response))
-		.catch(error => console.error(error));
+
+console.log('this is a test '+ data.id);
+
+
+	// fetch('https://playground.4geeks.com/apis/fake/contact/', {
+	// 	method: 'PUT',
+	// 	body: JSON.stringify(testObj), // data can be a 'string' or an {object} which comes from somewhere further above in our application
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	}
+	// })
+	// 	.then(res => {
+	// 		if (!res.ok) throw Error(res.statusText);
+	// 		return res.json();
+	// 	})
+	// 	.then(response => console.log('Success:', response))
+	// 	.catch(error => console.error(error));
 
 
 }
@@ -70,7 +73,7 @@ context.setListC(newArray);
 	return (
 		<div className="container">
 			<div>
-				<h1 className="text-center mt-5">Add a new contact</h1>
+				<h1 className="text-center mt-5">Edit existing contact</h1>
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>

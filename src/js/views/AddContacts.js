@@ -39,18 +39,18 @@ function saveContact(){
 		phone: context.tempP	
 
 	}
-	// console.log('This is a ', testObj);
+	
 	let newArray= [...context.listC];
 	newArray.push(testObj);
 	context.setListC(newArray);
-	setTempA('');
-	setTempE('');
-	setTempP('');
-	setTempN('');
+	context.setTempA('');
+	context.setTempE('');
+	context.setTempP('');
+	context.setTempN('');
 console.log(newArray);
 	fetch('https://playground.4geeks.com/apis/fake/contact/', {
 		method: 'POST', // or 'POST'
-		body: JSON.stringify(testObj), // data can be a 'string' or an {object} which comes from somewhere further above in our application
+		body: JSON.stringify(testObj),
 		headers: {
 			'Content-Type': 'application/json'
 		}
