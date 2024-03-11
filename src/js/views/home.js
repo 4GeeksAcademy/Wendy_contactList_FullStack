@@ -1,10 +1,12 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { ContactCard } from "../component/ContactCards";
-import PropTypes from "prop-types";
+// import { ContactCard } from "../component/ContactCards";
+
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../layout";
+import { Link, useParams, withRouter } from "react-router-dom";
+
 
 export const Home = () => {
 	const context = useContext(AppContext);
@@ -20,7 +22,7 @@ export const Home = () => {
             })
             .then(responseAsJson => {
                 // Do stuff with the JSONified response
-                console.log('this is a test', responseAsJson);
+               
                context.setListC(responseAsJson);
             })
             .catch(error => {
@@ -31,14 +33,77 @@ export const Home = () => {
 
 
 
+	function deleteContact(pos){
+		let newArray= context.listC.filter((element)=> element.id!=pos);
+		context.setListC(newArray);	
+
+		fetch('https://playground.4geeks.com/apis/fake/contact/'+pos, {
+			method: 'DELETE', // or 'POST'
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText);
+				return res.json();
+			})
+			.then(response => console.log('Success:', response))
+			.catch(error => console.error(error));
+	
+
+	}
+
+
+
+
 
 	return (
 	
 	<div className="text-center mt-5">
+<ul>
+	{context.listC.map((contact) =>
+		//		<ContactCard ind={index} contact={element}/>
 
-	{context.listC.map((element,index) =>
-				<ContactCard ind={index} contact={element}/>
+        <li className="list-group-item" key={contact.id}>
+        <div className="row w-100">
+            <div className="col-12 col-sm-6 col-md-3 px-0">
+                <img src={rigoImage} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
+            </div>
+            <div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
+                <div className=" float-right">
+                     <Link to={`/editcontact`} state={contact} >
+                    <button className="btn">
+                        <i className="fas fa-pencil-alt mr-3" />
+                    </button>
+                    </Link> 
+                    {/* <button className="btn" onClick={() => props.onDelete()}> */}
+                    <button className="btn" onClick={() => deleteContact(contact.id)}>
+                        <i className="fas fa-trash-alt" />
+                    </button>
+                </div>
+                <label className="name lead">{contact.full_name}</label>
+                <br />
+                <i className="fas fa-map-marker-alt text-muted mr-3" />
+                <span className="text-muted">{contact.address}</span>
+                <br />
+                <span
+                    className="fa fa-phone fa-fw text-muted mr-3"
+                    data-toggle="tooltip"
+                    title=""
+                    data-original-title="(870) 288-4149"
+                />
+                <span className="text-muted small">{contact.phone}</span>
+                <br />
+                <span
+                    className="fa fa-envelope fa-fw text-muted mr-3"
+                    data-toggle="tooltip"
+                    data-original-title=""
+                    title=""
+                />
+                <span className="text-muted small text-truncate">{contact.email}</span>
+            </div>
+        </div>
+    </li>
 			)}
+
+            </ul>
 		
 	</div>
 	)

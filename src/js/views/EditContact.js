@@ -8,7 +8,8 @@ import { AppContext } from "../layout";
 export const EditContact = props => {
 
 	const context = useContext(AppContext);
-	const[editId, setEditID]= useState();
+	const location =useLocation();
+const data = location.state;
    
 
 
@@ -50,22 +51,21 @@ export const EditContact = props => {
  context.setListC(newArray);
 
 
-console.log('this is a test '+ data.id);
+let contact_id= data.id;
 
-
-	// fetch('https://playground.4geeks.com/apis/fake/contact/', {
-	// 	method: 'PUT',
-	// 	body: JSON.stringify(testObj), // data can be a 'string' or an {object} which comes from somewhere further above in our application
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	}
-	// })
-	// 	.then(res => {
-	// 		if (!res.ok) throw Error(res.statusText);
-	// 		return res.json();
-	// 	})
-	// 	.then(response => console.log('Success:', response))
-	// 	.catch(error => console.error(error));
+	fetch('https://playground.4geeks.com/apis/fake/contact/'+contact_id, {
+		method: 'PUT',
+		body: JSON.stringify(testObj), // data can be a 'string' or an {object} which comes from somewhere further above in our application
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(res => {
+			if (!res.ok) throw Error(res.statusText);
+			return res.json();
+		})
+		.then(response => console.log('Success:', response))
+		.catch(error => console.error(error));
 
 
 }
