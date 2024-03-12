@@ -23,7 +23,7 @@ export const Navbar = () => {
 			var test2 = context.listC.some(i => i.full_name.includes(test));
 
 			if (test2) {
-				setState({ showModal2: true });
+			//	setState({ showModal2: true});
 			console.log('we find it');
 
 			}
@@ -49,7 +49,10 @@ export const Navbar = () => {
 
 				</Link>
 				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => name_search(e)} />
+
+					{/* <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => name_search(e)} /> */}
+
+
 					<Link to="/AddContacts">
 						<button className="btn btn-outline-success my-2 my-sm-0">Add new Contact</button>
 					</Link>

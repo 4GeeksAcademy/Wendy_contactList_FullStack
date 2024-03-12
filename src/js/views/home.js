@@ -42,7 +42,15 @@ export const Home = () => {
     }, []);
 
 
+function sort_contact()
+{
+   
+    let test= [...context.listC];
+    test.sort((a, b) => a.full_name.localeCompare(b.full_name));
+    
+    context.setListC(test);
 
+}
 
 
 
@@ -51,6 +59,7 @@ export const Home = () => {
 	return (
 	
 	<div className="text-center mt-5">
+        <div  className="sort_class"><span onClick={() => sort_contact()}>  <i class="fas fa-sort-alpha-down fa-2xl"></i></span></div>
 <ul>
 	{context.listC.map((contact) =>
 		//		<ContactCard ind={index} contact={element}/>
@@ -68,7 +77,7 @@ export const Home = () => {
                     </button>
                     </Link> 
                      <button className="btn" onClick={() => setState({ showModal: true, contactA:contact })}> 
-                     <i className="fas fa-trash-alt" />
+                     <i className="fas fa-trash-alt fa-bounce fa-xl" />
                    </button> 
 
                 

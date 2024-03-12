@@ -1,3 +1,14 @@
+.sort_class{
+  position: relative;
+margin-right: -1400px;
+
+
+
+}
+span{
+cursor: pointer;
+}
+
 .site-footer
 {
   background-color:#26272b;

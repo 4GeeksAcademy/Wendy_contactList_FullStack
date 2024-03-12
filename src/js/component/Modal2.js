@@ -28,8 +28,7 @@ export const Modal2 = props => {
 					<div className="modal-body">
 				
 
-
-                    {context.listC.map((contact)  =>
+                    {context.listC.map((contact)  => 
 
         <li className="list-group-item" key={contact.id}>
         <div className="row w-100">
@@ -72,15 +71,6 @@ export const Modal2 = props => {
         </div>
     </li>
 			)}
-
-
-
-
-
-
-
-
-
 
 
 
